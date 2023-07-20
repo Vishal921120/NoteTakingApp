@@ -1,8 +1,13 @@
 const express = require("express")
-const { connection } = require("mongoose")
+const cors = require("cors")
+const { connection } = require("./db")
+const { userRouter } = require("./routes/user.route")
 require("dotenv").config()
 const port = process.env.PORT
 const app = express()
+app.use(cors())
+app.use(express.json())
+app.use("/user",userRouter)
 
 app.get("/" , (req, res) => {
 
@@ -18,7 +23,7 @@ app.listen(port , async ()=> {
         await connection
         console.log("database is connected")
     }catch (error) {
-        console.log(error);
+        console.log("error" ,error);
     }
 
     console.log("server is running on port number" , port)

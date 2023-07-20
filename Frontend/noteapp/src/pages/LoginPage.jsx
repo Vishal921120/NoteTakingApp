@@ -13,12 +13,18 @@ import {
   } from '@chakra-ui/react';
 import login from "../assets/login1.png"
 import { useState  } from "react";
+import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "../Redux/user/user.actions";
 
 export default function LoginPage(){
+    const nav = useNavigate()
     const {auth, token , loading, error} = useSelector((state) => state.userReducer)
     console.log(auth,token)
+
+    if(auth){
+      nav("/notes")
+    }
 
     const [email, setEmail] = useState("")
     const [password , setPassword] = useState("")

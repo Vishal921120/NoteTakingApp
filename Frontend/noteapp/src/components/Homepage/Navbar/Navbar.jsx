@@ -29,7 +29,7 @@ export default function Navbar() {
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <Box size={"3xl"} cursor={"pointer"} onClick={() => {
                  nav("/")
-              }} ><b>NoteEase</b></Box>
+              }} ><b>NotesEase</b></Box>
 
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={7}>

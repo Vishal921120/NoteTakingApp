@@ -111,7 +111,7 @@ export const updateNotes = (id,obj) => async(dispatch)=> {
     dispatch({type :UPDATE_NOTES_LOADING})
     try {
         
-        const res = await axios(BASE_URL+"/note/",{
+        const res = await axios(BASE_URL+"/note",{
             method :"patch",
             data:obj,
             headers: {

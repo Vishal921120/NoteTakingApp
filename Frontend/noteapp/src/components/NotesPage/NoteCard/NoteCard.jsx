@@ -1,27 +1,100 @@
-import { Button, Card, CardBody, Flex, Heading, VStack , Text} from "@chakra-ui/react";
-import "./style.css"
+import {
+  Card,
+  CardBody,
+  Flex,
+  Heading,
+  VStack,
+  Text,
+  Input,
+  Textarea
+} from "@chakra-ui/react";
+import "./style.css";
 import { useDispatch } from "react-redux";
-import { deleteNotes } from "../../../Redux/notes/note.actions";
-export default function NoteCard({title, body , user, _id}){
+import { deleteNotes, updateNotes } from "../../../Redux/notes/note.actions";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  Button,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from "@chakra-ui/react";
+import { useState } from "react";
+import { useRef } from "react";
+import { useDisclosure } from "@chakra-ui/react";
 
-    const dispatch = useDispatch()
-    return <Card className="card" >
-        <CardBody>
-            <VStack>
-                <Heading>{title}</Heading>
-                <Text>{body}</Text>
+export default function NoteCard({ title, body, user, _id }) {
+    const dispatch = useDispatch();
+    const [notes, setNotes] = useState([]);
+    const { isOpen, onOpen, onClose } = useDisclosure()
+  const initialRef = useRef(null);
+  const finalRef = useRef(null);
 
-                <Flex gap={2}>
-                    <Button>Update</Button>
-                    <Button 
-                        onClick={() =>{
-                            dispatch(deleteNotes(_id))
-                        }}
-                    >Delete</Button>
-                </Flex>
+  const [tempTitle, setTitle] = useState(title);
+  const [tempBody, setBody] = useState(body);
 
+  const updateNote =() => {
+    dispatch(updateNotes(_id,{title:tempTitle, body:tempBody}))
+    onClose()
+  }
 
-            </VStack>
-        </CardBody>
+  
+  return (
+    <Card className="card">
+      <CardBody>
+        <VStack>
+          <Heading>{title}</Heading>
+          <Text>{body}</Text>
+
+          <Flex gap={2}>
+            <>
+              <Button onClick={onOpen}>Update</Button>
+
+              <Modal
+                initialFocusRef={initialRef}
+                finalFocusRef={finalRef}
+                isOpen={isOpen}
+                onClose={onClose}
+              >
+                <ModalOverlay />
+                <ModalContent>
+                  <ModalHeader>Update Note</ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody pb={6}>
+                    <Input
+                      value={tempTitle}
+                      placeholder="Please enter title"
+                      onChange={(e) => setTitle(e.target.value)}
+                    ></Input>
+                    <Textarea
+                      mt={8}
+                      value={tempBody}
+                      placeholder="Please enter description"
+                      onChange={(e) => setBody(e.target.value)}
+                    ></Textarea>
+                  </ModalBody>
+
+                  <ModalFooter>
+                    <Button colorScheme="blue" mr={3} onClick={updateNote}>
+                      Update
+                    </Button>
+                    <Button onClick={onClose}>Cancel</Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
+            </>
+            <Button
+              onClick={() => {
+                dispatch(deleteNotes(_id));
+              }}
+            >
+              Delete
+            </Button>
+          </Flex>
+        </VStack>
+      </CardBody>
     </Card>
+  );
 }

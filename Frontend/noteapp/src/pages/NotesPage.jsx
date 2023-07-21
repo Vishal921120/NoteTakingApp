@@ -18,14 +18,14 @@ import { useDisclosure } from "@chakra-ui/react";
 import { useRef } from "react";
 
 export default function NotesPage() {
+  const dispatch = useDispatch();
   const { loading, error, data } = useSelector((state) => state.noteReducer);
   console.log(data);
+  const [notes, setNotes] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const initialRef = useRef(null)
   const finalRef = useRef(null)
-  const dispatch = useDispatch();
-  const [notes, setNotes] = useState([]);
 
   const [title, setTitle] = useState("")
   const [body, setBody] = useState("")
@@ -40,6 +40,8 @@ export default function NotesPage() {
 
   const createNote = () =>{
     dispatch(createNotes({title,body}))
+    setTitle(""); // Reset title state to empty string
+    setBody(""); // Reset body state to empty string
     onClose()
   }
 

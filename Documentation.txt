@@ -1,0 +1,93 @@
+# Note Taking App - User Documentation
+
+Welcome to the Note Taking App! This user documentation will guide you through the various features of the application, enabling you to take and manage important notes effortlessly.
+
+## Getting Started
+
+1. **Sign Up**: If you are new to the app, click on the "Sign Up" button on the login page. Provide your email address and create a secure password. Once registered, you can proceed to login.
+
+2. **Login**: If you already have an account, simply enter your registered email and password to access your note-taking dashboard.
+
+## Dashboard Overview
+
+After successfully logging in, you will land on the dashboard. The dashboard provides an overview of your existing notes and allows you to add new ones.
+
+### Add a New Note
+
+To create a new note, follow these steps:
+
+1. **Click on "+": click on it to open the note editor.
+
+2. **Note Title**: Provide a title for your note in the designated input field.
+
+3. **Note Content**: Enter the content of your note in the large text area provided.
+
+4. **Save Note**: Once you've finished composing your note, click the "Create" button to store it in your account.
+
+### View, Update, and Delete Notes
+
+Your notes will be displayed on the dashboard, showing the title and a preview of the content. To view, update, or delete a note:
+
+1. **All Note**: Click on the title of the note to view its full content.
+
+2. **Update Note**: Within the note view, you can click the "Update" button to make changes to the note's title or content. Once you're done, click "Save" to update the note.
+
+3. **Delete Note**: In the note view, you will find the "Delete" button. Click on it to remove the note permanently. Be cautious as this action cannot be undone.
+
+## Logout
+
+To logout from your account, click on the "Logout" button on the top-right corner of the dashboard. This will securely log you out and prevent unauthorized access to your notes.
+
+## Security
+
+We take the security of your data seriously. Your login details and notes are encrypted using industry-standard security measures, ensuring your information remains confidential and secure.
+
+Frontend Implementation Decisions:
+
+1. **Frontend Framework**: For my frontend application, I have chosen React.js as the framework. I decided to use React due to its component-based architecture and virtual DOM, making it a popular choice for building dynamic and scalable user interfaces.
+
+2. **State Management**: To manage the application state, I opted for React-Redux. Redux provides a predictable state container, simplifying the handling of application state and data flow.
+
+3. **Routing**: I've used React Router DOM to manage client-side routing. With React Router DOM, I can easily navigate and render components based on the URL.
+
+4. **Styling**: To enhance the UI design and styling, I chose Chakra UI. Chakra UI is a component library that offers pre-designed and customizable components to create visually appealing and consistent user interfaces.
+
+5. **HTTP Library**: For making API requests to the backend, I decided to use Axios. Axios simplifies the process of sending HTTP requests and handling responses.
+
+6. **Asynchronous Actions**: To handle asynchronous actions, such as making API calls and updating state in Redux, I included Redux Thunk middleware. This allows me to write action creators that return functions instead of plain actions.
+
+7. **CSS Gradient**: For custom CSS styling, I used UIGradient. This tool helps me generate and apply CSS gradients to elements in my application.
+
+8. **Image Resources**: I sourced images from Freepik and PNGFind. These platforms offer a variety of free and premium images that enhance the visual experience of my app.
+
+9. **Icon Library**: I integrated React Icons to access a wide range of SVG icons that can be easily used as React components.
+
+Certainly! Let's document the implementation decisions for the backend application based on the provided tech stack:
+
+Backend Implementation Decisions:
+
+1. **Framework**: I have chosen Express.js as the backend framework for my application. Express is a popular and lightweight Node.js framework that simplifies the process of building web applications and APIs.
+
+2. **Database**: I am using MongoDB as the database for my backend. MongoDB is a NoSQL database that allows for flexible schema design and scalability, making it suitable for handling various types of data in my application.
+
+3. **ODM (Object Data Mapping)**: To interact with the MongoDB database, I am using Mongoose. Mongoose is an ODM that provides a more straightforward and schema-based approach for managing data and defining models in Node.js applications.
+
+4. **Authentication**: For user authentication, I have implemented the JSON Web Token (JWT) approach. This allows for secure and stateless authentication, enabling users to access protected endpoints using tokens.
+
+5. **Security**: To ensure the security of user data, I am using bcrypt for password hashing. Bcrypt is a widely-used library for securely hashing passwords, protecting user credentials from potential breaches.
+
+6. **Environment Variables**: To manage sensitive configuration data, I am utilizing dotenv. dotenv enables me to store configuration variables separately in a .env file, making it easier to manage different environments (development, production, etc.) securely.
+
+7. **Cross-Origin Resource Sharing (CORS)**: To handle Cross-Origin requests from the frontend, I have implemented CORS middleware. CORS allows my backend to accept requests from specified origins, enhancing the security of my application.
+
+**API Testing:- Thunder Client**: For testing my API endpoints, I am using Thunder Client. Thunder Client is a popular VS Code extension that provides a user-friendly interface for sending and managing API requests, making it convenient to test the functionality of my backend.
+
+
+**Deployment:**
+
+1. **Backend Deployment**: I deployed the backend of my application using Cyclic. Cyclic streamlines and automates the deployment process, making it easier to manage and maintain my backend application.
+
+2. **Frontend Deployment**: For the frontend deployment, I opted for Vercel. Vercel is a platform that allows for seamless deployment and hosting of frontend applications with continuous integration capabilities.
+
+
+

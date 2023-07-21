@@ -15,6 +15,7 @@ export const getUser = (obj) => async (dispatch) => {
         if(status == 1){
             dispatch({type:LOGIN_USER_SUCCESS, payload : token})
         }else{
+            alert(message)
             dispatch({type:LOGIN_USER_ERROR})
         }
         

@@ -18,14 +18,18 @@ import {
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { LOGOUT } from '../../../Redux/user/user.types';
 export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const dispatch = useDispatch()
+  const {auth, token , loading, error} = useSelector((state) => state.userReducer)
+
   const nav = useNavigate()
   return (
     <>
-      <Box zIndex={"1000"} position={"fixed"} w={"100%"} bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
+      <Box zIndex={"1000"} position={"fixed"} top={0} w={"100%"} bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <Box size={"3xl"} cursor={"pointer"} onClick={() => {
                  nav("/")
@@ -33,13 +37,13 @@ export default function Navbar() {
 
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={7}>
-              <Button onClick={() => {
+              <Button display={auth?"block":"none"} onClick={() => {
                  nav("/notes")
               }}>All Notes</Button>
-              <Button onClick={() => {
+              <Button display={auth?"none":"block"} onClick={() => {
                  nav("/login")
               }}>Login</Button>
-              <Button onClick={() => {
+              <Button display={auth?"none":"block"} onClick={() => {
                  nav("/register")
               }}>Sign Up</Button>
               <Button onClick={toggleColorMode}>
@@ -74,7 +78,7 @@ export default function Navbar() {
                   <MenuDivider />
                   <MenuItem>Your Servers</MenuItem>
                   <MenuItem>Account Settings</MenuItem>
-                  <MenuItem>Logout</MenuItem>
+                  <MenuItem onClick={()=> dispatch({type:LOGOUT}) }>Logout</MenuItem>
                 </MenuList>
               </Menu>
             </Stack>
